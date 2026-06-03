@@ -43,6 +43,7 @@ jobs:
 
       - name: Build
         run: |
+          sed -i 's/\r$//' build.sh test.sh
           chmod +x build.sh
           ./build.sh
 
