@@ -21,6 +21,7 @@ sudo apt install -y \
   pkg-config \
   ninja-build \
   protobuf-compiler \
+  protobuf-compiler-grpc \
   libprotobuf-dev \
   libgrpc++-dev \
   libgrpc-dev \

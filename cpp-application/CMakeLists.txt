@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(gRPC CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
+find_program(GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin REQUIRED)
 
 set(PROTO_FILE "${CMAKE_CURRENT_SOURCE_DIR}/monitor.proto")
 set(PROTO_GEN_DIR "${CMAKE_CURRENT_BINARY_DIR}")
@@ -18,7 +19,7 @@ add_custom_command(
         ARGS --grpc_out=${PROTO_GEN_DIR}
              --cpp_out=${PROTO_GEN_DIR}
              -I ${CMAKE_CURRENT_SOURCE_DIR}
-             --plugin=protoc-gen-grpc=$<TARGET_FILE:gRPC::grpc_cpp_plugin>
+             --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN_EXECUTABLE}
              ${PROTO_FILE}
     DEPENDS ${PROTO_FILE}
     COMMENT "Generating protobuf/gRPC stubs"
