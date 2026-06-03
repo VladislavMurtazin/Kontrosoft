@@ -45,6 +45,11 @@ jobs:
       - name: Build
         run: |
           sed -i 's/\r$//' build.sh test.sh
+          which protoc
+          which grpc_cpp_plugin
+          protoc --version
+          cmake --version
+          cmake -S cpp-application -B build -DCMAKE_BUILD_TYPE=Release
           chmod +x build.sh
           ./build.sh
 
