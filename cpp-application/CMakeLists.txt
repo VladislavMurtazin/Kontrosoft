@@ -4,7 +4,7 @@ project(grpc_udp_monitor LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Protobuf CONFIG REQUIRED)
+find_package(Protobuf REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 find_program(GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin REQUIRED)
 find_library(GRPCPP_LIBRARY grpc++ REQUIRED)
