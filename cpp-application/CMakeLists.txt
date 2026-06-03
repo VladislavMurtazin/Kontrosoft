@@ -4,10 +4,11 @@ project(grpc_udp_monitor LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(gRPC CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 find_program(GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin REQUIRED)
+find_library(GRPCPP_LIBRARY grpc++ REQUIRED)
+find_library(GRPC_LIBRARY grpc REQUIRED)
 
 set(PROTO_FILE "${CMAKE_CURRENT_SOURCE_DIR}/monitor.proto")
 set(PROTO_GEN_DIR "${CMAKE_CURRENT_BINARY_DIR}")
@@ -33,7 +34,8 @@ add_executable(grpc_udp_monitor
 
 target_include_directories(grpc_udp_monitor PRIVATE ${PROTO_GEN_DIR})
 target_link_libraries(grpc_udp_monitor PRIVATE
-    gRPC::grpc++
+    ${GRPCPP_LIBRARY}
+    ${GRPC_LIBRARY}
     protobuf::libprotobuf
     Boost::system
 )
