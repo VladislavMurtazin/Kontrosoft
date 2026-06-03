@@ -1,0 +1,7 @@
+build/
+*.pyc
+__pycache__/
+tests/generated/monitor_pb2.py
+tests/generated/monitor_pb2_grpc.py
+.pytest_cache/
+.DS_Store

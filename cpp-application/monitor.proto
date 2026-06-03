@@ -1,0 +1,15 @@
+syntax = "proto3";
+package monitor;
+
+service MonitorService {
+  rpc IsReady (Empty) returns (BoolResponse);
+  rpc GetUdpStatistics (Empty) returns (UdpStats);
+}
+
+message Empty {}
+message BoolResponse { bool is_ready = 1; }
+message UdpStats { 
+  uint64 packets = 1; 
+  uint64 aBytes = 2; 
+}
+
