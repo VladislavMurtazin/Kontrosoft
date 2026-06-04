@@ -44,19 +44,9 @@ jobs:
 
       - name: Build
         run: |
-          set -euxo pipefail
           sed -i 's/\r$//' build.sh test.sh
-          which protoc
-          which grpc_cpp_plugin
-          protoc --version
-          cmake --version
-          cmake -S cpp-application -B build -DCMAKE_BUILD_TYPE=Release
           chmod +x build.sh
-          if ! ./build.sh 2>&1 | tee build.log; then
-            echo "===== BUILD LOG (last 200 lines) ====="
-            tail -n 200 build.log
-            exit 1
-          fi
+          ./build.sh
 
       - name: Test
         run: |
