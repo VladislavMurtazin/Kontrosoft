@@ -9,6 +9,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 find_program(GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin REQUIRED)
 find_library(GRPCPP_LIBRARY grpc++ REQUIRED)
 find_library(GRPC_LIBRARY grpc REQUIRED)
+find_library(GPR_LIBRARY gpr REQUIRED)
 
 set(PROTO_FILE "${CMAKE_CURRENT_SOURCE_DIR}/monitor.proto")
 set(PROTO_GEN_DIR "${CMAKE_CURRENT_BINARY_DIR}")
@@ -36,6 +37,7 @@ target_include_directories(grpc_udp_monitor PRIVATE ${PROTO_GEN_DIR})
 target_link_libraries(grpc_udp_monitor PRIVATE
     ${GRPCPP_LIBRARY}
     ${GRPC_LIBRARY}
+    ${GPR_LIBRARY}
     protobuf::libprotobuf
     Boost::system
 )
